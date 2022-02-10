@@ -1,8 +1,54 @@
 @import "../../styles/variable.scss";
 
+@mixin mobile-active-styles {
+  height: 100%;
+}
+
+@mixin tablet-active-styles {
+  height: 3px;
+}
+
 .navItem {
   width: 100%;
-  background: red;
+  height: 100%;
+  position: relative;
+
+  &:after {
+    position: absolute;
+    content: "";
+    height: 0;
+    width: 4px;
+    top: 0;
+    right: 0;
+    transition: all 0.5s ease-in-out;
+
+    @include md-and-up {
+      height: 3px;
+      width: 0;
+      top: calc(100% - 3px);
+      bottom: 0;
+      left: 0;
+    }
+  }
+
+  &:hover:not(.navItem__active) {
+    position: relative;
+    &:after {
+      background: rgba($white, 0.04);
+
+      @include mobile-active-styles();
+      height: 100%;
+
+      @include md-and-up {
+        @include tablet-active-styles();
+        width: 100%;
+      }
+    }
+  }
+
+  a {
+    display: flex;
+  }
 
   &__active {
     position: relative;
@@ -14,6 +60,14 @@
       top: 0;
       right: 0;
       content: "";
+
+      @include md-and-up {
+        height: 3px;
+        width: 100%;
+        top: calc(100% - 3px);
+        bottom: 0;
+        left: 0;
+      }
     }
   }
 
@@ -26,5 +80,11 @@
     margin-right: 12px;
     @include nav-text;
     font-weight: 700;
+    @include md-and-up {
+      display: none;
+    }
+    @include lg-and-up {
+      display: inline-block;
+    }
   }
 }
