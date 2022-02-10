@@ -1,0 +1,68 @@
+@import "../../styles/variable.scss";
+
+.header {
+  position: fixed;
+  top: 0;
+  background: transparent;
+  left: 0;
+  right: 0;
+  padding-top: 24px;
+  z-index: 9999;
+  @include md-and-up {
+    padding-top: 0;
+  }
+  @include lg-and-up {
+    padding-top: 40px;
+  }
+}
+
+.nav {
+  display: flex;
+  padding-left: 24px;
+  padding-right: 24px;
+  align-items: center;
+  justify-content: space-between;
+  width: 100vw;
+
+  &__left {
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
+  }
+
+  &__list {
+    display: flex;
+    width: 0;
+    transform: translateX(100vw);
+    transition: all 0.3s ease-in-out;
+    &__active {
+      transform: translateX(0);
+      width: 100%;
+      position: relative;
+      &:after {
+        position: absolute;
+        width: 100%;
+        height: 100vh;
+        background: rgba($white, 0.04);
+        content: "";
+      }
+    }
+
+    @include md-and-up {
+      height: 96px;
+      background: rgba($white, 0.04);
+    }
+  }
+
+  &__mobileMenuButton {
+    z-index: 9999;
+  }
+}
+
+.hideInMD {
+  @include show;
+  @include md-and-up {
+    @include hide;
+  }
+}

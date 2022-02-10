@@ -55,4 +55,27 @@ $header-font: "Bellefair, serif";
   font-size: 16px;
   letter-spacing: 2.7px;
   font-weight: 400;
+  text-transform: uppercase;
+}
+
+@mixin md-and-up {
+  @media screen and (min-width: 768px) {
+    @content;
+  }
+}
+
+@mixin lg-and-up {
+  @media screen and (min-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin hide {
+  display: none;
+  visibility: hidden;
+}
+
+@mixin show {
+  display: flex;
+  visibility: visible;
 }

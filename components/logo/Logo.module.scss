@@ -1,0 +1,15 @@
+@import "../../styles/variable.scss";
+
+.logo {
+  svg {
+    height: 40px;
+    width: 40px;
+  }
+
+  @include md-and-up {
+    svg {
+      height: 48px;
+      width: 48px;
+    }
+  }
+}

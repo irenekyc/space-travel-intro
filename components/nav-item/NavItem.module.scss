@@ -1,0 +1,30 @@
+@import "../../styles/variable.scss";
+
+.navItem {
+  width: 100%;
+  background: red;
+
+  &__active {
+    position: relative;
+    &:after {
+      height: 100%;
+      position: absolute;
+      width: 4px;
+      background: $white;
+      top: 0;
+      right: 0;
+      content: "";
+    }
+  }
+
+  &__text {
+    color: $white;
+    @include nav-text;
+  }
+
+  &__number {
+    margin-right: 12px;
+    @include nav-text;
+    font-weight: 700;
+  }
+}

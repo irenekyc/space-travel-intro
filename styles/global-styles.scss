@@ -6,6 +6,21 @@
   box-sizing: border-box;
 }
 
+a,
+a:hover,
+a:visited {
+  text-decoration: none;
+  text-transform: none;
+  color: inherit;
+}
+
+button {
+  background: none;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
 html {
   background: $dark;
   color: $white;
