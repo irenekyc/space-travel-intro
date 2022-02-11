@@ -32,7 +32,8 @@ ul {
   padding: 0;
 }
 
-html {
+html,
+body {
   background: $dark;
   color: $white;
   font-size: 18px;

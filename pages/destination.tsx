@@ -20,12 +20,12 @@ const Destination: NextPage = () => {
         <span>01</span> Pick your destination
       </h1>
       <div className={styles.destinationPage__content}>
-        <div className={styles.destinationPage__content__image}>
-          <TabContainer
-            activeKey={`${activeSlide}`}
-            defaultActiveKey={`${activeSlide}`}
-            onSelect={clickOnSlide}
-          >
+        <TabContainer
+          activeKey={`${activeSlide}`}
+          defaultActiveKey={`${activeSlide}`}
+          onSelect={clickOnSlide}
+        >
+          <div className={styles.destinationPage__content__image}>
             <TabContent>
               {DESTINATION_DATA.map((data: SpaceDataType) => (
                 <TabPane
@@ -43,30 +43,24 @@ const Destination: NextPage = () => {
                 </TabPane>
               ))}
             </TabContent>
-          </TabContainer>
-        </div>
-        <div className={styles.destinationPage__content__text}>
-          <ul className={styles.destinationPage__content__tabRow}>
-            {DESTINATION_DATA.map((space: SpaceDataType, index: number) => (
-              <li key={space.name}>
-                <Tab
-                  id={space.name}
-                  label={space.name}
-                  data-tab-index={index}
-                  isActive={space.name === activeSlide}
-                  activeStyles={ACTIVE_STYLE_UNDERLINE}
-                  className={styles.destinationPage__content__tab}
-                  onClick={() => setActiveSlide(space.name)}
-                />
-              </li>
-            ))}
-          </ul>
+          </div>
+          <div className={styles.destinationPage__content__text}>
+            <ul className={styles.destinationPage__content__tabRow}>
+              {DESTINATION_DATA.map((space: SpaceDataType, index: number) => (
+                <li key={space.name}>
+                  <Tab
+                    id={space.name}
+                    label={space.name}
+                    data-tab-index={index}
+                    isActive={space.name === activeSlide}
+                    activeStyles={ACTIVE_STYLE_UNDERLINE}
+                    className={styles.destinationPage__content__tab}
+                    onClick={() => setActiveSlide(space.name)}
+                  />
+                </li>
+              ))}
+            </ul>
 
-          <TabContainer
-            activeKey={`${activeSlide}`}
-            defaultActiveKey={`${activeSlide}`}
-            onSelect={clickOnSlide}
-          >
             <TabContent>
               {DESTINATION_DATA.map((data: SpaceDataType) => (
                 <TabPane
@@ -93,8 +87,8 @@ const Destination: NextPage = () => {
                 </TabPane>
               ))}
             </TabContent>
-          </TabContainer>
-        </div>
+          </div>
+        </TabContainer>
       </div>
     </main>
   );

@@ -5,11 +5,14 @@
   right: 0;
   top: 0;
   bottom: 0;
-  padding-top: 100px;
+
   transition: transform 0.3s ease-in-out;
   background: rgba($white, 0.04);
+  backdrop-filter: blur(81.5485px);
   width: 254px;
+  padding-top: 100px;
   padding-left: 32px;
+  z-index: 9000;
 
   &__active {
     transform: translateX(0);

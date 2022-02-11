@@ -20,6 +20,7 @@ const Crew: NextPage = () => {
       <h1>
         <span>02</span> Meet Your Crew
       </h1>
+
       <div className={styles.crewPage__content}>
         <TabContainer
           defaultActiveKey={activeSlide}
@@ -41,37 +42,32 @@ const Crew: NextPage = () => {
               </TabPane>
             ))}
           </TabContent>
-        </TabContainer>
 
-        <div className={styles.crewPage__content__text}>
-          <ul className={styles.crewPage__tabRow}>
-            {CREW_DATA.map((crewData: CrewType) => (
-              <li key={crewData.id}>
-                <button
-                  className={classnames(styles.crewPage__tab__button, {
-                    [styles.crewPage__tab__button__active]:
-                      activeSlide === crewData.id,
-                  })}
-                  id={`crew-tab-${crewData.id}`}
-                  onClick={() => setActiveSlide(crewData.id)}
-                >
-                  {crewData.name}
-                </button>
-                <label
-                  className={classnames(styles.crewPage__tab__label, {
-                    [styles.crewPage__tab__label__active]:
-                      activeSlide === crewData.id,
-                  })}
-                  htmlFor={`crew-tab-${crewData.id}`}
-                />
-              </li>
-            ))}
-          </ul>
-          <TabContainer
-            defaultActiveKey={activeSlide}
-            activeKey={activeSlide}
-            onSelect={clickOnSlide}
-          >
+          <div className={styles.crewPage__content__text}>
+            <ul className={styles.crewPage__tabRow}>
+              {CREW_DATA.map((crewData: CrewType) => (
+                <li key={crewData.id}>
+                  <button
+                    className={classnames(styles.crewPage__tab__button, {
+                      [styles.crewPage__tab__button__active]:
+                        activeSlide === crewData.id,
+                    })}
+                    id={`crew-tab-${crewData.id}`}
+                    onClick={() => setActiveSlide(crewData.id)}
+                  >
+                    {crewData.name}
+                  </button>
+                  <label
+                    className={classnames(styles.crewPage__tab__label, {
+                      [styles.crewPage__tab__label__active]:
+                        activeSlide === crewData.id,
+                    })}
+                    htmlFor={`crew-tab-${crewData.id}`}
+                  />
+                </li>
+              ))}
+            </ul>
+
             <TabContent>
               {CREW_DATA.map((crew) => (
                 <TabPane eventKey={crew.id} key={crew.id}>
@@ -83,8 +79,8 @@ const Crew: NextPage = () => {
                 </TabPane>
               ))}
             </TabContent>
-          </TabContainer>
-        </div>
+          </div>
+        </TabContainer>
       </div>
     </main>
   );

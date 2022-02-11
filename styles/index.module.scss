@@ -12,6 +12,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  color: $white;
 
   @include md-and-up {
     background: url("../public/images/home/background-home-tablet.jpg");

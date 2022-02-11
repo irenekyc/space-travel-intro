@@ -2,12 +2,23 @@
 
 .technologyPage {
   @include page-style;
-  background: url("../public/images/technology/background-technology-desktop.jpg");
+  background: url("../public/images/technology/background-technology-mobile.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: bottom;
 
+  @include md-and-up {
+    background: url("../public/images/technology/background-technology-tablet.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
+  }
+
   @include lg-and-up {
+    background: url("../public/images/technology/background-technology-desktop.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
     h1 {
       display: block;
       width: 100%;
@@ -158,7 +169,8 @@
     }
   }
   &__content__image__lg {
-    width: 35vw;
+    width: 33vw;
+    max-width: 515px;
   }
 }
 

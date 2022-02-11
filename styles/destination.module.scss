@@ -1,22 +1,14 @@
 @import "./variable.scss";
 
 .destinationPage {
-  animation: blend-in 1s forwards;
-  filter: brightness(0.5);
+  @include page-style;
   background: url("../public/images/destination/background-destination-mobile.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: bottom;
-  display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  min-height: 100vh;
-  color: $white;
-  padding-top: 88px;
-  padding-left: 24px;
-  padding-right: 24px;
-  width: 100%;
+
   h1 {
     @include heading-5;
     color: $white;
@@ -28,7 +20,6 @@
   }
 
   @include md-and-up {
-    padding-top: 136px;
     background: url("../public/images/destination/background-destination-tablet.jpg");
     background-repeat: no-repeat;
     background-size: cover;
@@ -40,8 +31,6 @@
     }
   }
   @include lg-and-up {
-    padding-left: 55px;
-    padding-top: 212px;
     background: url("../public/images/destination/background-destination-desktop.jpg");
     background-repeat: no-repeat;
     background-size: cover;
