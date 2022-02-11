@@ -8,9 +8,35 @@ $white: #fff;
 $main-font: "Barlow Condensed", sans-serif;
 $header-font: "Bellefair, serif";
 
+@mixin md-and-up {
+  @media screen and (min-width: 768px) {
+    @content;
+  }
+}
+
+@mixin lg-and-up {
+  @media screen and (min-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin hide {
+  display: none;
+  visibility: hidden;
+}
+
+@mixin show {
+  display: flex;
+  visibility: visible;
+}
+
 @mixin heading-1 {
   font-family: $header-font;
-  font-size: 150px;
+  font-size: 80px;
+  @include md-and-up {
+    font-size: 150px;
+  }
+
   font-weight: 400;
 }
 
@@ -33,7 +59,15 @@ $header-font: "Bellefair, serif";
 }
 
 @mixin heading-5 {
-  font-size: 28px;
+  font-size: 16px;
+
+  @include md-and-up {
+    font-size: 20px;
+  }
+  @include lg-and-up {
+    font-size: 28px;
+  }
+
   letter-spacing: 4.75px;
   font-family: $main-font;
   font-weight: 400;
@@ -56,26 +90,4 @@ $header-font: "Bellefair, serif";
   letter-spacing: 2.7px;
   font-weight: 400;
   text-transform: uppercase;
-}
-
-@mixin md-and-up {
-  @media screen and (min-width: 768px) {
-    @content;
-  }
-}
-
-@mixin lg-and-up {
-  @media screen and (min-width: 1024px) {
-    @content;
-  }
-}
-
-@mixin hide {
-  display: none;
-  visibility: hidden;
-}
-
-@mixin show {
-  display: flex;
-  visibility: visible;
 }
