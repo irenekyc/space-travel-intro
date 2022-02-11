@@ -1,3 +1,4 @@
+@import "~bootstrap/scss/bootstrap";
 @import "./variable.scss";
 
 * {
@@ -34,12 +35,4 @@ h1 {
 
 p {
   font-family: $main-font;
-}
-
-.swiper-slide {
-  background: red;
-  max-width: 100vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }

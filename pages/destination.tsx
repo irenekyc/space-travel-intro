@@ -6,30 +6,48 @@ import { ACTIVE_STYLE_UNDERLINE } from "../constants/tabs";
 import { useState } from "react";
 import { DESTINATION_DATA } from "../constants/destination-data";
 import { SpaceDataType } from "../typings/Destination";
+import { TabContainer, TabContent, TabPane } from "react-bootstrap";
+import Fade from "react-bootstrap";
 
 const Destination: NextPage = () => {
   const [activeSlide, setActiveSlide] = useState<string>("MOON");
 
+  const clickOnSlide = (eventKey: string | null) => setActiveSlide(eventKey!);
+
   return (
     <Layout>
       <main className={styles.destinationPage}>
+        <h1>
+          <span>01</span> Pick your destination
+        </h1>
         <div className={styles.destinationPage__content}>
-          <h2>
-            <span>01</span> Pick your destination
-          </h2>
-
-          <div className={styles.destinationPage__image__div}>
-            <div className={styles.destinationPage__image__wrapper}>
-              <img
-                className={styles.destinationPage__image}
-                src={DESTINATION_DATA[0].image.png}
-                alt={DESTINATION_DATA[0].name}
-              />
-            </div>
+          <div className={styles.destinationPage__content__image}>
+            <TabContainer
+              activeKey={`${activeSlide}`}
+              defaultActiveKey={`${activeSlide}`}
+              onSelect={clickOnSlide}
+            >
+              <TabContent>
+                {DESTINATION_DATA.map((data: SpaceDataType) => (
+                  <TabPane
+                    eventKey={`${data.name}`}
+                    transition={true}
+                    key={data.name}
+                  >
+                    <div className={styles.destinationPage__image__div}>
+                      <img
+                        className={styles.destinationPage__image}
+                        src={data.image.png}
+                        alt={data.name}
+                      />
+                    </div>
+                  </TabPane>
+                ))}
+              </TabContent>
+            </TabContainer>
           </div>
-
-          <div className={styles.destinationPage__swiper__div}>
-            <ul className={styles.destinationPage__swiper__controller}>
+          <div className={styles.destinationPage__content__text}>
+            <ul className={styles.destinationPage__content__tabRow}>
               {DESTINATION_DATA.map((space: SpaceDataType, index: number) => (
                 <li key={space.name}>
                   <Tab
@@ -38,33 +56,47 @@ const Destination: NextPage = () => {
                     data-tab-index={index}
                     isActive={space.name === activeSlide}
                     activeStyles={ACTIVE_STYLE_UNDERLINE}
-                    className={styles.destinationPage__swiper__navigation__tab}
+                    className={styles.destinationPage__content__tab}
                     onClick={() => setActiveSlide(space.name)}
                   />
                 </li>
               ))}
             </ul>
-            {/* Swiper Text */}
-            <div className={styles.destinationPage__swiper__text}>
-              <h1>Moon</h1>
-              <p>
-                The smallest of the four Galilean moons orbiting Jupiter, Europa
-                is a winter lover’s dream. With an icy surface, it’s perfect for
-                a bit of ice skating, curling, hockey, or simple relaxation in
-                your snug wintery cabin.
-              </p>
-              <hr className={styles.divider} />
-              <div className={styles.destinationPage__statistic}>
-                <div className={styles.destinationPage__statisticDiv}>
-                  <h2>AVG. DISTANCE</h2>
-                  <h3>628 MIL. km</h3>
-                </div>
-                <div className={styles.destinationPage__statisticDiv}>
-                  <h2>Est. travel time</h2>
-                  <h3>9 months</h3>
-                </div>
-              </div>
-            </div>
+
+            <TabContainer
+              activeKey={`${activeSlide}`}
+              defaultActiveKey={`${activeSlide}`}
+              onSelect={clickOnSlide}
+            >
+              <TabContent>
+                {DESTINATION_DATA.map((data: SpaceDataType) => (
+                  <TabPane
+                    eventKey={`${data.name}`}
+                    transition={true}
+                    key={data.name}
+                  >
+                    <div
+                      className={styles.destinationPage__content__description}
+                    >
+                      <h2>{data.name}</h2>
+                      <p>{data.description}</p>
+                      <hr className={styles.divider} />
+                      <div className={styles.destinationPage__statistic}>
+                        {data.statistics.map((stat) => (
+                          <div
+                            className={styles.destinationPage__statisticDiv}
+                            key={stat.label}
+                          >
+                            <h3>{stat.label}</h3>
+                            <h4>{stat.value}</h4>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </TabPane>
+                ))}
+              </TabContent>
+            </TabContainer>
           </div>
         </div>
       </main>
