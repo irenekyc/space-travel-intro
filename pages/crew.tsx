@@ -5,65 +5,85 @@ import Image from "next/image";
 
 import { useState } from "react";
 
-import { SpaceDataType } from "../typings/Destination";
 import { TabContainer, TabContent, TabPane } from "react-bootstrap";
+import { CREW_DATA } from "../constants/crew-data";
+import { CrewType } from "../typings/Crew";
+import classnames from "classnames";
 
 const Crew: NextPage = () => {
-  const [activeSlide, setActiveSlide] = useState<string>();
+  const [activeSlide, setActiveSlide] = useState<string>(CREW_DATA[0].id);
 
   const clickOnSlide = (eventKey: string | null) => setActiveSlide(eventKey!);
 
   return (
     <main className={styles.crewPage}>
       <h1>
-        <span>01</span> Meet Your Crew
+        <span>02</span> Meet Your Crew
       </h1>
       <div className={styles.crewPage__content}>
-        <div className={styles.crewPage__content__image}>
-          <Image
-            src="/images/crew/image-douglas-hurley.png"
-            alt="Douglas"
-            height={700}
-            width={514}
-            objectFit="contain"
-          />
-        </div>
+        <TabContainer
+          defaultActiveKey={activeSlide}
+          activeKey={activeSlide}
+          onSelect={clickOnSlide}
+        >
+          <TabContent>
+            {CREW_DATA.map((crew: CrewType) => (
+              <TabPane key={crew.id} eventKey={crew.id} transition={true}>
+                <div className={styles.crewPage__content__image__wrapper}>
+                  <Image
+                    src={crew.image.png}
+                    alt={crew.name}
+                    height={crew.image.height}
+                    width={crew.image.width}
+                    objectFit="cover"
+                  />
+                </div>
+              </TabPane>
+            ))}
+          </TabContent>
+        </TabContainer>
+
         <div className={styles.crewPage__content__text}>
           <ul className={styles.crewPage__tabRow}>
-            <li>
-              <button className={styles.crewPage__tab__button} id="crew-1">
-                Douglas
-              </button>
-              <label className={styles.crewPage__tab__label} htmlFor="crew-1" />
-            </li>
-            <li>
-              <button className={styles.crewPage__tab__button} id="crew-2">
-                Douglas
-              </button>
-              <label className={styles.crewPage__tab__label} htmlFor="crew-2" />
-            </li>
-            <li>
-              <button className={styles.crewPage__tab__button} id="crew-3">
-                Douglas
-              </button>
-              <label className={styles.crewPage__tab__label} htmlFor="crew-3" />
-            </li>
-            <li>
-              <button className={styles.crewPage__tab__button} id="crew-4">
-                Douglas
-              </button>
-              <label className={styles.crewPage__tab__label} htmlFor="crew-4" />
-            </li>
+            {CREW_DATA.map((crewData: CrewType) => (
+              <li key={crewData.id}>
+                <button
+                  className={classnames(styles.crewPage__tab__button, {
+                    [styles.crewPage__tab__button__active]:
+                      activeSlide === crewData.id,
+                  })}
+                  id={`crew-tab-${crewData.id}`}
+                  onClick={() => setActiveSlide(crewData.id)}
+                >
+                  {crewData.name}
+                </button>
+                <label
+                  className={classnames(styles.crewPage__tab__label, {
+                    [styles.crewPage__tab__label__active]:
+                      activeSlide === crewData.id,
+                  })}
+                  htmlFor={`crew-tab-${crewData.id}`}
+                />
+              </li>
+            ))}
           </ul>
-          <div className={styles.crewPage__content__description}>
-            <h3>Commander</h3>
-            <h2>Douglas Hurley</h2>
-            <p>
-              Douglas Gerald Hurley is an American engineer, former Marine Corps
-              pilot and former NASA astronaut. He launched into space for the
-              third time as commander of Crew Dragon Demo-2.
-            </p>
-          </div>
+          <TabContainer
+            defaultActiveKey={activeSlide}
+            activeKey={activeSlide}
+            onSelect={clickOnSlide}
+          >
+            <TabContent>
+              {CREW_DATA.map((crew) => (
+                <TabPane eventKey={crew.id} key={crew.id}>
+                  <div className={styles.crewPage__content__description}>
+                    <h3>{crew.role}</h3>
+                    <h2>{crew.name}</h2>
+                    <p>{crew.description}</p>
+                  </div>
+                </TabPane>
+              ))}
+            </TabContent>
+          </TabContainer>
         </div>
       </div>
     </main>

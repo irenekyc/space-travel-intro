@@ -54,28 +54,42 @@
     h1 {
       margin-bottom: 60px;
       text-align: left;
+      max-width: 1116px;
+      display: block;
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
     }
+    min-height: 700px;
     height: 100vh;
-    min-height: 650px;
+    max-height: 900px;
   }
 
   &__content {
-    flex: 1;
     width: 100%;
+    max-width: 1116px;
+    margin-right: auto;
+    margin-left: auto;
+    flex: 1;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
+    max-height: 600px;
     @include md-and-up {
       flex-direction: column-reverse;
+      max-height: none;
     }
     @include lg-and-up {
       flex-direction: row-reverse;
+      align-items: flex-end;
       margin-top: -120px;
+      justify-content: space-between;
     }
   }
 
-  &__content__image {
+  &__content__image__wrapper {
     height: 250px;
     max-height: 250px;
     width: 100%;
@@ -85,14 +99,19 @@
     margin-bottom: 32px;
 
     @include md-and-up {
+      width: 60%;
+      margin-right: auto;
+      margin-left: auto;
       border-bottom: none;
       margin-bottom: 0;
       flex: 1;
       height: auto;
-      max-height: 532px;
+      max-height: none;
     }
     @include lg-and-up {
-      max-height: calc(100vh - 90px);
+      width: 100%;
+      height: auto;
+      max-height: calc(100vh - 212px + 30px);
     }
   }
 
@@ -154,6 +173,7 @@
     h2 {
       @include heading-3;
       text-transform: uppercase;
+      white-space: nowrap;
     }
     p {
       color: $primary;
@@ -168,6 +188,7 @@
     }
     @include lg-and-up {
       align-items: flex-start;
+      text-align: left;
 
       p {
         text-align: left;
