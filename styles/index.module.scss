@@ -1,6 +1,8 @@
 @import "./variable.scss";
 
 .homePage {
+  animation: blend-in 1s forwards;
+  filter: brightness(0.5);
   height: 100vh;
   min-height: 640px;
   background: url("../public/images/home/background-home-mobile.jpg");

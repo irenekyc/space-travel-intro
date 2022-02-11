@@ -22,6 +22,14 @@ button {
   cursor: pointer;
 }
 
+label {
+  cursor: pointer;
+}
+
+ul {
+  list-style: none;
+}
+
 html {
   background: $dark;
   color: $white;
@@ -34,5 +42,6 @@ h1 {
 }
 
 p {
-  font-family: $main-font;
+  font-family: "Barlow";
+  font-weight: 300;
 }

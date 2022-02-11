@@ -1,5 +1,15 @@
 @import "./fonts.scss";
 
+@keyframes blend-in {
+  0% {
+    filter: brightness(0.5);
+  }
+
+  100% {
+    filter: brightness(1);
+  }
+}
+
 // Deisgn System
 $dark: #0b0d17;
 $primary: #d0d6f9;
@@ -48,7 +58,13 @@ $header-font: "Bellefair", serif;
 
 @mixin heading-3 {
   font-family: $header-font;
-  font-size: 56px;
+  font-size: 24px;
+  @include md-and-up {
+    font-size: 40px;
+  }
+  @include lg-and-up {
+    font-size: 56px;
+  }
   font-weight: 400;
 }
 
@@ -74,7 +90,14 @@ $header-font: "Bellefair", serif;
 }
 
 @mixin sub-heading-1 {
-  font-size: 28px;
+  font-size: 16px;
+  @include md-and-up {
+    font-size: 24px;
+  }
+  @include lg-and-up {
+    font-size: 28px;
+  }
+
   font-family: $header-font;
   font-weight: 400;
 }
