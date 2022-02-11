@@ -1,0 +1,157 @@
+@import "./variable.scss";
+
+.technologyPage {
+  @include page-style;
+  background: url("../public/images/technology/background-technology-desktop.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom;
+
+  @include lg-and-up {
+    h1 {
+      display: block;
+      width: 100%;
+      max-width: 1276px;
+      margin-left: auto;
+      margin-right: -24px;
+      text-align: left;
+    }
+  }
+  &__content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    @include lg-and-up {
+      width: 100%;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1276px;
+      margin-left: auto;
+      margin-right: -24px;
+    }
+  }
+
+  &__content__image__sm {
+    width: calc(100% + 48px);
+    margin-left: -24px;
+    margin-right: -24px;
+    max-height: 350px;
+    margin-bottom: 24px;
+    max-height: 330px;
+    overflow: hidden;
+
+    @include md-and-up {
+      margin-bottom: 56px;
+    }
+    @include lg-and-up {
+      display: none;
+    }
+  }
+
+  &__content__tabRow {
+    height: 40px;
+    width: 152px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 26px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @include md-and-up {
+      width: 210px;
+      margin-bottom: 44px;
+    }
+
+    @include lg-and-up {
+      width: 80px;
+      flex-direction: column;
+      height: 304px;
+      margin: 0;
+    }
+  }
+  &__content__tabButton {
+    visibility: hidden;
+    display: none;
+    height: 0;
+    width: 0;
+  }
+
+  &__content__tabLabel {
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $white;
+    font-size: 24px;
+    font-family: $header-font;
+    border: 1px solid rgba($white, 0.25);
+    transition: all 0.4s ease-in-out;
+
+    @include md-and-up {
+      width: 60px;
+      height: 60px;
+    }
+
+    @include lg-and-up {
+      width: 80px;
+      height: 80px;
+    }
+
+    &__active {
+      background: $white;
+      color: $dark;
+      border: 1px solid $white;
+    }
+
+    &:hover:not(.__content__tabLabel) {
+      border: 1px solid white;
+    }
+  }
+
+  &__content__description {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    max-width: 458px;
+    margin-right: auto;
+    margin-left: auto;
+    h3 {
+      @include nav-text;
+      color: $primary;
+    }
+    h2 {
+      @include heading-3;
+      margin-top: 9px;
+      margin-bottom: 16px;
+      white-space: nowrap;
+    }
+    p {
+      text-align: center;
+      color: $primary;
+      line-height: 1.8;
+    }
+    @include md-and-up {
+      h2 {
+        margin-top: 16px;
+      }
+    }
+    @include lg-and-up {
+      flex: 1;
+      margin: 0;
+      max-width: 45%;
+      align-items: flex-start;
+      p {
+        text-align: left;
+      }
+    }
+  }
+  &__content__image__lg {
+    width: 35%;
+  }
+}
