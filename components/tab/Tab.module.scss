@@ -1,0 +1,31 @@
+@import "../../styles/variable.scss";
+
+.tab {
+  height: 100%;
+}
+
+.tab__underline {
+  position: relative;
+  &:after {
+    width: 0;
+    height: 3px;
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    content: "";
+    transition: all 0.5s ease-in-out;
+  }
+
+  &:hover:not(.tab__active):after {
+    width: 100%;
+    background: rgba($white, 0.1);
+  }
+}
+
+.tab__underline.tab__active {
+  color: $white;
+  &:after {
+    width: 100%;
+    background: $white;
+  }
+}

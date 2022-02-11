@@ -1,0 +1,2 @@
+export const ACTIVE_STYLE_UNDERLINE = "UNDERLINE";
+export const ACTIVE_STYLE_FILLED = "FILLED";
