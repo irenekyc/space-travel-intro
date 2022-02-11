@@ -1,5 +1,4 @@
 import type { NextPage } from "next";
-import Layout from "../components/layout";
 import styles from "../styles/index.module.scss";
 import Head from "next/head";
 
