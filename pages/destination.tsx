@@ -7,7 +7,7 @@ import { useState } from "react";
 import { DESTINATION_DATA } from "../constants/destination-data";
 import { SpaceDataType } from "../typings/Destination";
 import { TabContainer, TabContent, TabPane } from "react-bootstrap";
-import Fade from "react-bootstrap";
+import Head from "next/head";
 
 const Destination: NextPage = () => {
   const [activeSlide, setActiveSlide] = useState<string>("MOON");
@@ -15,82 +15,89 @@ const Destination: NextPage = () => {
   const clickOnSlide = (eventKey: string | null) => setActiveSlide(eventKey!);
 
   return (
-    <main className={styles.destinationPage}>
-      <h1>
-        <span>01</span> Pick your destination
-      </h1>
-      <div className={styles.destinationPage__content}>
-        <TabContainer
-          activeKey={`${activeSlide}`}
-          defaultActiveKey={`${activeSlide}`}
-          onSelect={clickOnSlide}
-        >
-          <div className={styles.destinationPage__content__image}>
-            <TabContent>
-              {DESTINATION_DATA.map((data: SpaceDataType) => (
-                <TabPane
-                  eventKey={`${data.name}`}
-                  transition={true}
-                  key={data.name}
-                >
-                  <div className={styles.destinationPage__image__div}>
-                    <img
-                      className={styles.destinationPage__image}
-                      src={data.image.png}
-                      alt={data.name}
-                    />
-                  </div>
-                </TabPane>
-              ))}
-            </TabContent>
-          </div>
-          <div className={styles.destinationPage__content__text}>
-            <ul className={styles.destinationPage__content__tabRow}>
-              {DESTINATION_DATA.map((space: SpaceDataType, index: number) => (
-                <li key={space.name}>
-                  <Tab
-                    id={space.name}
-                    label={space.name}
-                    data-tab-index={index}
-                    isActive={space.name === activeSlide}
-                    activeStyles={ACTIVE_STYLE_UNDERLINE}
-                    className={styles.destinationPage__content__tab}
-                    onClick={() => setActiveSlide(space.name)}
-                  />
-                </li>
-              ))}
-            </ul>
-
-            <TabContent>
-              {DESTINATION_DATA.map((data: SpaceDataType) => (
-                <TabPane
-                  eventKey={`${data.name}`}
-                  transition={true}
-                  key={data.name}
-                >
-                  <div className={styles.destinationPage__content__description}>
-                    <h2>{data.name}</h2>
-                    <p>{data.description}</p>
-                    <hr className={styles.divider} />
-                    <div className={styles.destinationPage__statistic}>
-                      {data.statistics.map((stat) => (
-                        <div
-                          className={styles.destinationPage__statisticDiv}
-                          key={stat.label}
-                        >
-                          <h3>{stat.label}</h3>
-                          <h4>{stat.value}</h4>
-                        </div>
-                      ))}
+    <>
+      <Head>
+        <title>Destinations | Space Travel</title>
+      </Head>
+      <main className={styles.destinationPage}>
+        <h1>
+          <span>01</span> Pick your destination
+        </h1>
+        <div className={styles.destinationPage__content}>
+          <TabContainer
+            activeKey={`${activeSlide}`}
+            defaultActiveKey={`${activeSlide}`}
+            onSelect={clickOnSlide}
+          >
+            <div className={styles.destinationPage__content__image}>
+              <TabContent>
+                {DESTINATION_DATA.map((data: SpaceDataType) => (
+                  <TabPane
+                    eventKey={`${data.name}`}
+                    transition={true}
+                    key={data.name}
+                  >
+                    <div className={styles.destinationPage__image__div}>
+                      <img
+                        className={styles.destinationPage__image}
+                        src={data.image.png}
+                        alt={data.name}
+                      />
                     </div>
-                  </div>
-                </TabPane>
-              ))}
-            </TabContent>
-          </div>
-        </TabContainer>
-      </div>
-    </main>
+                  </TabPane>
+                ))}
+              </TabContent>
+            </div>
+            <div className={styles.destinationPage__content__text}>
+              <ul className={styles.destinationPage__content__tabRow}>
+                {DESTINATION_DATA.map((space: SpaceDataType, index: number) => (
+                  <li key={space.name}>
+                    <Tab
+                      id={space.name}
+                      label={space.name}
+                      data-tab-index={index}
+                      isActive={space.name === activeSlide}
+                      activeStyles={ACTIVE_STYLE_UNDERLINE}
+                      className={styles.destinationPage__content__tab}
+                      onClick={() => setActiveSlide(space.name)}
+                    />
+                  </li>
+                ))}
+              </ul>
+
+              <TabContent>
+                {DESTINATION_DATA.map((data: SpaceDataType) => (
+                  <TabPane
+                    eventKey={`${data.name}`}
+                    transition={true}
+                    key={data.name}
+                  >
+                    <div
+                      className={styles.destinationPage__content__description}
+                    >
+                      <h2>{data.name}</h2>
+                      <p>{data.description}</p>
+                      <hr className={styles.divider} />
+                      <div className={styles.destinationPage__statistic}>
+                        {data.statistics.map((stat) => (
+                          <div
+                            className={styles.destinationPage__statisticDiv}
+                            key={stat.label}
+                          >
+                            <h3>{stat.label}</h3>
+                            <h4>{stat.value}</h4>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </TabPane>
+                ))}
+              </TabContent>
+            </div>
+          </TabContainer>
+        </div>
+      </main>
+    </>
   );
 };
 

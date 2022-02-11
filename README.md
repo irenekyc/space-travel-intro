@@ -1,3 +1,21 @@
+# Frontend Mentor - Space Travel
+
+This is a solution to the [Space Travel Site challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/space-tourism-multipage-website-gRWj1URZ3). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
+
+Stacks:
+Next Js
+Typescripts
+Bootstraps
+
+Libraries:
+Bootstraps
+
+Live website: https://irenekyc.github.io/space-travel-teaser-site/
+
+# Design - Desktop
+
+![desktop design](../main/preview.jpg)
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
