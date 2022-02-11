@@ -124,12 +124,16 @@
     h3 {
       @include nav-text;
       color: $primary;
+      text-transform: uppercase;
+      text-align: center;
     }
     h2 {
       @include heading-3;
       margin-top: 9px;
       margin-bottom: 16px;
       white-space: nowrap;
+      text-transform: uppercase;
+      text-align: center;
     }
     p {
       text-align: center;
@@ -146,12 +150,27 @@
       margin: 0;
       max-width: 45%;
       align-items: flex-start;
-      p {
+      p,
+      h2,
+      h3 {
         text-align: left;
       }
     }
   }
   &__content__image__lg {
-    width: 35%;
+    width: 35vw;
+  }
+}
+
+.hideInLG {
+  @include lg-and-up {
+    @include hide;
+  }
+}
+
+.showInLG {
+  display: none;
+  @include lg-and-up {
+    @include show;
   }
 }

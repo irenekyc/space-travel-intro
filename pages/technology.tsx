@@ -8,9 +8,11 @@ import { useState } from "react";
 import { TabContainer, TabContent, TabPane } from "react-bootstrap";
 
 import classnames from "classnames";
+import { TECHNOLOGY_DATA } from "../constants/technology-data";
+import { TechnologyData } from "../typings/Technology";
 
 const Technology: NextPage = () => {
-  const [activeSlide, setActiveSlide] = useState<string>("");
+  const [activeSlide, setActiveSlide] = useState<string>(TECHNOLOGY_DATA[0].id);
 
   const clickOnSlide = (eventKey: string | null) => setActiveSlide(eventKey!);
 
@@ -20,63 +22,95 @@ const Technology: NextPage = () => {
         <span>03</span> SPACE LAUNCH 101
       </h1>
       <div className={styles.technologyPage__content}>
-        <div className={styles.technologyPage__content__image__sm}>
-          <Image
-            src="/images/technology/image-launch-vehicle-landscape.jpg"
-            alt=""
-            width={375}
-            height={170}
-            layout="responsive"
-            objectFit="cover"
-            objectPosition="center"
-          />
-        </div>
-        <ul className={styles.technologyPage__content__tabRow}>
-          {["1", "2", "3"].map((tab: string) => (
-            <li key={tab}>
-              <button
-                className={styles.technologyPage__content__tabButton}
-                id={`technology-${tab}`}
+        <TabContainer
+          activeKey={activeSlide}
+          defaultActiveKey={activeSlide}
+          onSelect={clickOnSlide}
+        >
+          <TabContent className={styles.hideInLG}>
+            {TECHNOLOGY_DATA.map((technology: TechnologyData) => (
+              <TabPane
+                transition={true}
+                key={`technology-image-${technology.id}`}
+                eventKey={technology.id}
               >
-                {tab}
-              </button>
-              <label
-                htmlFor={`technology-${tab}`}
-                className={classnames(
-                  styles.technologyPage__content__tabLabel,
-                  {
-                    [styles.technologyPage__content__tabLabel__active]:
-                      tab === "1",
-                  }
-                )}
+                <div className={styles.technologyPage__content__image__sm}>
+                  <Image
+                    src={technology.image.landscape.png}
+                    alt={technology.name}
+                    width={technology.image.landscape.width}
+                    height={technology.image.landscape.height}
+                    layout="responsive"
+                    objectFit="cover"
+                    objectPosition="center"
+                  />
+                </div>
+              </TabPane>
+            ))}
+          </TabContent>
+
+          <ul className={styles.technologyPage__content__tabRow}>
+            {TECHNOLOGY_DATA.map((technology: TechnologyData) => (
+              <li key={technology.id}>
+                <button
+                  className={styles.technologyPage__content__tabButton}
+                  id={`technology-${technology.id}`}
+                  onClick={() => setActiveSlide(technology.id)}
+                >
+                  {technology.id}
+                </button>
+                <label
+                  htmlFor={`technology-${technology.id}`}
+                  className={classnames(
+                    styles.technologyPage__content__tabLabel,
+                    {
+                      [styles.technologyPage__content__tabLabel__active]:
+                        activeSlide === technology.id,
+                    }
+                  )}
+                >
+                  {technology.id}
+                </label>
+              </li>
+            ))}
+          </ul>
+          <div className={styles.technologyPage__content__description}>
+            <TabContent>
+              {TECHNOLOGY_DATA.map((technology: TechnologyData) => (
+                <TabPane
+                  transition={true}
+                  eventKey={technology.id}
+                  key={`technology-decription-${technology.id}`}
+                >
+                  <h3>THE TERMINOLOGY…</h3>
+                  <h2>{technology.name}</h2>
+                  <p>{technology.description}</p>
+                </TabPane>
+              ))}
+            </TabContent>
+          </div>
+          <TabContent className={styles.showInLG}>
+            {TECHNOLOGY_DATA.map((technology: TechnologyData) => (
+              <TabPane
+                transition={true}
+                key={`technology-image-${technology.id}`}
+                eventKey={technology.id}
               >
-                {tab}
-              </label>
-            </li>
-          ))}
-        </ul>
-        <div className={styles.technologyPage__content__description}>
-          <h3>THE TERMINOLOGY…</h3>
-          <h2>LAUNCH VEHICLE</h2>
-          <p>
-            A launch vehicle or carrier rocket is a rocket-propelled vehicle
-            used to carry a payload from Earth's surface to space, usually to
-            Earth orbit or beyond. Our WEB-X carrier rocket is the most powerful
-            in operation. Standing 150 metres tall, it's quite an awe-inspiring
-            sight on the launch pad!
-          </p>
-        </div>
-        <div className={styles.technologyPage__content__image__lg}>
-          <Image
-            src="/images/technology/image-launch-vehicle-portrait.jpg"
-            alt=""
-            width={515}
-            height={527}
-            layout="responsive"
-            objectFit="cover"
-            objectPosition="center"
-          />
-        </div>
+                <div className={styles.technologyPage__content__image__lg}>
+                  <Image
+                    src={technology.image.portrait.png}
+                    alt={technology.name}
+                    width={technology.image.portrait.width}
+                    height={technology.image.portrait.height}
+                    layout="responsive"
+                    objectFit="cover"
+                    objectPosition="center"
+                  />
+                </div>
+              </TabPane>
+            ))}
+          </TabContent>
+        </TabContainer>
       </div>
     </main>
   );
